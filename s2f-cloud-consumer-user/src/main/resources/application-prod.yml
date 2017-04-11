@@ -1,6 +1,6 @@
 server:
   port: 80
-  #context-path: /user-provider
+  #context-path: /user-consumer
 
 girl:
   cupsize: prod-D

@@ -1,37 +1,27 @@
-package com.gasq.cloud.user.entity;
+package com.gasq.cloud.consumer.user.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import java.util.Date;
 
-
-@Entity
-@Table(name = "s_system_user")
+/**
+ * @author tangmin
+ * @version V1.0
+ * @Title: User.java
+ * @Package com.gasq.cloud.consumer.user.entity
+ * @Description: 待重构
+ * @date 2017-04-11 23:03:17
+ */
 public class User{
 
-    @Id
-    @GeneratedValue
     private Long id;
 
-    @NotBlank(message = "name不能为空")
     private String name;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    @JSONField(serialize = false)
     private String remark;
-
 
     private String sex;
 
-    @Min(value = 18, message = "未成年人不允许注册")
     private int age;
 
     public Long getId() {

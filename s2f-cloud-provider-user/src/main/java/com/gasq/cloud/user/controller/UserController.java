@@ -35,9 +35,15 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("users")
-    public Result getUser(){
+    public Result users(){
         logger.info("UserController:get user method print");
         return ResultUtil.SUCCESS(userDao.findAll());
+    }
+
+    @GetMapping("{id}")
+    public Result getUser(@PathVariable Long id){
+        logger.info("UserController:get user method print");
+        return ResultUtil.SUCCESS(userDao.findOne(id));
     }
 
     @PostMapping(value = "saveUser")

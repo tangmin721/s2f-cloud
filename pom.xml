@@ -24,6 +24,7 @@
 
 		<!--provider-->
 		<module>s2f-cloud-provider-user</module>
+		<module>s2f-cloud-consumer-user</module>
 
 		<!--service impl-->
 

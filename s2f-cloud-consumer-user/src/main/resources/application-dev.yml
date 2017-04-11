@@ -1,6 +1,6 @@
 server:
-  port: 8080
-  context-path: /user-provider
+  port: 8081
+  context-path: /user-consumer
 
 girl:
   cupsize: dev-B

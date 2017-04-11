@@ -14,14 +14,12 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient
-public class UserProviderApplication {
-
-
+public class UserConsumerApplication {
 
     public static void main(String[] args) {
         /**
          * 在main方法中启动我们的应用程序
          */
-        SpringApplication.run(UserProviderApplication.class, args);
+        SpringApplication.run(UserConsumerApplication.class, args);
     }
 }
