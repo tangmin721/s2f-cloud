@@ -32,15 +32,15 @@ public class ExceptionHandle {
         //先写具体的业务异常
         if (e instanceof UserBizException) {
             UserBizException userBizException = (UserBizException) e;
-            return ResultUtil.fail(userBizException.getCode(), userBizException.getMessage());
+            return ResultUtil.FAIL(userBizException.getCode(), userBizException.getMessage());
 
             //再写总的业务异常
         } else if (e instanceof BizException) {
             BizException bizException = (BizException) e;
-            return ResultUtil.fail(bizException.getCode(), bizException.getMessage());
+            return ResultUtil.FAIL(bizException.getCode(), bizException.getMessage());
         } else {
             logger.error("[系统异常]{}", e);
-            return ResultUtil.fail(-100, "系统异常：" + e.getMessage());
+            return ResultUtil.FAIL(-100, "系统异常：" + e.getMessage());
         }
     }
 }
