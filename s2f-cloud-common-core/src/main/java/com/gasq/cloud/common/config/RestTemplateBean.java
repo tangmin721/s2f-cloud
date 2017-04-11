@@ -2,6 +2,7 @@ package com.gasq.cloud.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -26,9 +27,11 @@ public class RestTemplateBean {
 
     /**
      * 使用RestTemplateBuilder来实例化RestTemplate对象，spring默认已经注入了RestTemplateBuilder实例
+     * @LoadBalanced 使得restTemplate具有负载均衡能力
      * @return
      */
     @Bean
+    @LoadBalanced
     public RestTemplate restTemplate() {
         return builder.build();
     }

@@ -21,9 +21,14 @@ public class UserConsumerController {
     @Autowired
     private RestTemplate restTemplate;
 
+    /**
+     * restTemplate集成了ribbon功能，url里相当于一个vip
+     * @param id
+     * @return
+     */
     @GetMapping("/user/{id}")
     public Result getUser(@PathVariable Long id){
-        Result forObject = restTemplate.getForObject("http://localhost:8080/user-provider/user/" + id, Result.class);
+        Result forObject = restTemplate.getForObject("http://s2f-cloud-provider-user/user-provider/user/" + id, Result.class);
         return forObject;
     }
 
