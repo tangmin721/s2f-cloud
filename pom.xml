@@ -22,7 +22,8 @@
 		<!--common core-->
 		<module>s2f-cloud-common-core</module>
 
-		<!--service api-->
+		<!--provider-->
+		<module>s2f-cloud-provider-user</module>
 
 		<!--service impl-->
 
