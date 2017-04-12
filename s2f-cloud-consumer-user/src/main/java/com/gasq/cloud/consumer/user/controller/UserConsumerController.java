@@ -5,6 +5,7 @@ import com.gasq.cloud.common.result.ResultUtil;
 import com.gasq.cloud.consumer.user.entity.User;
 import com.gasq.cloud.consumer.user.feign.UserFeignClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,10 @@ public class UserConsumerController {
      * @return
      */
     @GetMapping("/user/{id}")
-    @HystrixCommand(fallbackMethod = "getUserFallback")
+    //@HystrixCommand(fallbackMethod = "getUserFallback")  与fallback在隔离的线程，下面定义commandProperties的方式是在同一个线程里执行
+    @HystrixCommand(fallbackMethod = "getUserFallback", commandProperties = {
+            @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
+    })
     public Result getUser(@PathVariable Long id){
         Result forObject = restTemplate.getForObject("http://s2f-cloud-provider-user/user/" + id, Result.class);
         return forObject;
@@ -56,13 +60,11 @@ public class UserConsumerController {
      * @return
      */
     @GetMapping("/getFeignUser/{id}")
-    @HystrixCommand(fallbackMethod = "getUserFallback")
     public Result getFeignUser(@PathVariable Long id){
         return userFeignClient.getUserById(id);
     }
 
     @PostMapping("/saveFeignUser")
-    @HystrixCommand(fallbackMethod = "saveFeignUserFallback")
     public Result saveFeignUser(User user){
         return userFeignClient.saveUser(user.getName(),user.getAge());
     }
@@ -73,14 +75,9 @@ public class UserConsumerController {
      * @return
      */
     @PostMapping("/saveFeignUserEntity")
-    @HystrixCommand(fallbackMethod = "saveFeignUserFallback")
     public Result saveFeignUserEntity(User user){
         System.out.println("-->saveFeignUserEntity");
         return userFeignClient.saveUserEntity(user);
-    }
-
-    public Result saveFeignUserFallback(User user){
-        return ResultUtil.FAIL("fall back");
     }
 
 }

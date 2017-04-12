@@ -2,6 +2,7 @@ package com.gasq.cloud.consumer.user.feign;
 
 import com.gasq.cloud.common.result.Result;
 import com.gasq.cloud.consumer.user.entity.User;
+import com.gasq.cloud.consumer.user.feign.fallback.UserFeignClientHystrixFallback;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Description: UserFeignClient（服务名）
  * @date 2017-04-12 12:46:18
  */
-@FeignClient("s2f-cloud-provider-user")
+@FeignClient(name = "s2f-cloud-provider-user",fallback = UserFeignClientHystrixFallback.class)
 public interface UserFeignClient {
 
     /**
