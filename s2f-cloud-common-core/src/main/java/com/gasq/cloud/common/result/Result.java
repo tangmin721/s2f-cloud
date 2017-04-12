@@ -1,5 +1,7 @@
 package com.gasq.cloud.common.result;
 
+import java.io.Serializable;
+
 /**
  * @author tangmin
  * @version V1.0
@@ -8,7 +10,7 @@ package com.gasq.cloud.common.result;
  * @Description: 返回信息统一包装
  * @date 2017-04-04 22:13:02
  */
-public class Result {
+public class Result implements Serializable {
     private int code;
     private String msg;
     private Object data;

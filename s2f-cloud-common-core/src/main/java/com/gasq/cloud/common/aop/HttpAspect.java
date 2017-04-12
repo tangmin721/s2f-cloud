@@ -1,6 +1,7 @@
 package com.gasq.cloud.common.aop;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -60,7 +61,13 @@ public class HttpAspect {
      * @param object
      */
     @AfterReturning(returning = "object",pointcut = "log()")
+
     public void returning(Object object){
-        logger.info("response={}", JSON.toJSONString(object));
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            logger.info("response={}", mapper.writeValueAsString(object));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,11 +1,10 @@
 package com.gasq.cloud.user.dao;
 
-import org.junit.runner.RunWith;
-
-import com.alibaba.fastjson.JSON;
+import com.gasq.cloud.common.utils.JacksonUtil;
 import com.gasq.cloud.user.entity.User;
 import com.gasq.cloud.user.service.UserService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -44,9 +43,9 @@ public class UserDaoTest {
     }
 
     @Test
-    public void getAllUser(){
+    public void getAllUser() throws Exception {
         List<User> users = userDao.findAll();
-        System.out.println(JSON.toJSONString(users));
+        System.out.println(JacksonUtil.obj2json(users));
     }
 
     @Test
@@ -57,8 +56,9 @@ public class UserDaoTest {
     }
 
     @Test
-    public void findByName(){
-        System.out.println(JSON.toJSONString(userDao.findByName("张三")));
+    public void findByName() throws Exception {
+
+        System.out.println(JacksonUtil.obj2json(userDao.findByName("张三")));
     }
 
 }

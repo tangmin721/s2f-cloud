@@ -1,5 +1,6 @@
 package com.gasq.cloud.consumer.user.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  * @Description: 待重构
  * @date 2017-04-11 23:03:17
  */
-public class User{
+public class User implements Serializable{
 
     private Long id;
 

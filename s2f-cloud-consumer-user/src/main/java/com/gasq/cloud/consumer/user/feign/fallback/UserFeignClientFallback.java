@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
  * @date 2017-04-12 16:39:02
  */
 @Component
-public class UserFeignClientHystrixFallback implements UserFeignClient{
+public class UserFeignClientFallback implements UserFeignClient{
     @Override
     public Result getUserById(Long id) {
         return ResultUtil.FAIL("getUserById fall back");
     }
 
     @Override
-    public Result saveUser(String name, Integer age) {
+    public Result saveUser(String name, Integer age,String remark) {
         return ResultUtil.FAIL("saveUser fall back");
     }
 

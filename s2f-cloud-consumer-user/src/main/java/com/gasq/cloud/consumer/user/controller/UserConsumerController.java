@@ -66,11 +66,10 @@ public class UserConsumerController {
 
     @PostMapping("/saveFeignUser")
     public Result saveFeignUser(User user){
-        return userFeignClient.saveUser(user.getName(),user.getAge());
+        return userFeignClient.saveUser(user.getName(),user.getAge(),user.getRemark());
     }
 
     /**
-     * 不支持复杂对象
      * @param user
      * @return
      */

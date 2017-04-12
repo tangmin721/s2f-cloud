@@ -1,6 +1,6 @@
 package com.gasq.cloud.user.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
@@ -8,12 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
 import java.util.Date;
 
 
 @Entity
 @Table(name = "s_system_user")
-public class User{
+public class User implements Serializable{
 
     @Id
     @GeneratedValue
@@ -22,10 +23,9 @@ public class User{
     @NotBlank(message = "name不能为空")
     private String name;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-    @JSONField(serialize = false)
     private String remark;
 
 
