@@ -1,8 +1,10 @@
 package com.gasq.cloud.consumer.user.controller;
 
 import com.gasq.cloud.common.result.Result;
+import com.gasq.cloud.common.result.ResultUtil;
 import com.gasq.cloud.consumer.user.entity.User;
 import com.gasq.cloud.consumer.user.feign.UserFeignClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,13 +31,24 @@ public class UserConsumerController {
 
     /**
      * restTemplate集成了ribbon功能，url里相当于一个vip
+     * @HystrixCommand 熔断器指定方法名
      * @param id
      * @return
      */
     @GetMapping("/user/{id}")
+    @HystrixCommand(fallbackMethod = "getUserFallback")
     public Result getUser(@PathVariable Long id){
         Result forObject = restTemplate.getForObject("http://s2f-cloud-provider-user/user/" + id, Result.class);
         return forObject;
+    }
+
+    /**
+     * 注意，方法参数要一致
+     * @param id
+     * @return
+     */
+    public Result getUserFallback(Long id){
+        return ResultUtil.FAIL("fall back");
     }
     /**
      * 调用第二种方式，利用FeignClient调用（推荐）
@@ -43,11 +56,13 @@ public class UserConsumerController {
      * @return
      */
     @GetMapping("/getFeignUser/{id}")
+    @HystrixCommand(fallbackMethod = "getUserFallback")
     public Result getFeignUser(@PathVariable Long id){
         return userFeignClient.getUserById(id);
     }
 
     @PostMapping("/saveFeignUser")
+    @HystrixCommand(fallbackMethod = "saveFeignUserFallback")
     public Result saveFeignUser(User user){
         return userFeignClient.saveUser(user.getName(),user.getAge());
     }
@@ -58,8 +73,14 @@ public class UserConsumerController {
      * @return
      */
     @PostMapping("/saveFeignUserEntity")
+    @HystrixCommand(fallbackMethod = "saveFeignUserFallback")
     public Result saveFeignUserEntity(User user){
+        System.out.println("-->saveFeignUserEntity");
         return userFeignClient.saveUserEntity(user);
+    }
+
+    public Result saveFeignUserFallback(User user){
+        return ResultUtil.FAIL("fall back");
     }
 
 }
