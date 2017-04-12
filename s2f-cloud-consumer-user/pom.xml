@@ -26,11 +26,7 @@
             <artifactId>s2f-cloud-common-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.gasq.cloud</groupId>
-            <artifactId>s2f-cloud-feign-user</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+
         <!--test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
