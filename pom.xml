@@ -27,6 +27,8 @@
 
 		<!--consumer-->
 		<module>s2f-cloud-consumer-user</module>
+		<module>s2f-cloud-hystrix-dashboard</module>
+		<module>s2f-cloud-hystrix-turbine</module>
 
 		<!--service impl-->
 
