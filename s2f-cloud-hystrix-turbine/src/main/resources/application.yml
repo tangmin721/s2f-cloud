@@ -17,8 +17,6 @@ turbine:
   aggregator:
     clusterConfig: S2F-CLOUD-CONSUMER-USER
   appConfig: s2f-cloud-consumer-user
-#如果有context-path
-turbine.instanceUrlSuffix.S2F-CLOUD-CONSUMER-USER: /user-consumer/hystrix.stream
 
 #logging:
 #  level:
