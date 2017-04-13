@@ -1,0 +1,19 @@
+server:
+  context-path: /
+  port: 9001
+
+spring:
+  application:
+    name: s2f-cloud-gateway-zuul
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://user:password123456@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: BEIJING
