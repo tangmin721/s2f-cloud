@@ -1,6 +1,6 @@
 package com.gasq.cloud.user.dao;
 
-import com.gasq.cloud.common.utils.JacksonUtil;
+import com.gasq.cloud.common.utils.JacksonUtils;
 import com.gasq.cloud.user.entity.User;
 import com.gasq.cloud.user.service.UserService;
 import org.junit.Test;
@@ -45,7 +45,7 @@ public class UserDaoTest {
     @Test
     public void getAllUser() throws Exception {
         List<User> users = userDao.findAll();
-        System.out.println(JacksonUtil.obj2json(users));
+        System.out.println(JacksonUtils.obj2json(users));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class UserDaoTest {
     @Test
     public void findByName() throws Exception {
 
-        System.out.println(JacksonUtil.obj2json(userDao.findByName("张三")));
+        System.out.println(JacksonUtils.obj2json(userDao.findByName("张三")));
     }
 
 }

@@ -1,6 +1,6 @@
 server:
   context-path: /
-  port: 9001
+  port: 80
 
 spring:
   application:
@@ -17,3 +17,11 @@ eureka:
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
     metadata-map:
       zone: BEIJING
+
+###定义zuul反向代理规则
+zuul:
+  routes:
+    s2f-cloud-consumer-user: /user/**
+
+
+
