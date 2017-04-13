@@ -12,7 +12,15 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
 
+
 turbine:
   aggregator:
     clusterConfig: S2F-CLOUD-CONSUMER-USER
   appConfig: s2f-cloud-consumer-user
+#如果有context-path
+turbine.instanceUrlSuffix.S2F-CLOUD-CONSUMER-USER: /user-consumer/hystrix.stream
+
+#logging:
+#  level:
+#    root: INFO
+#    com.netflix.turbine.monitor: DEBUG
