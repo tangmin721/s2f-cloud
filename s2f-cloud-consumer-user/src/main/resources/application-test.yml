@@ -1,6 +1,5 @@
 server:
   port: 8088
-  #context-path: /user-consumer
 
 girl:
   cupsize: test-F
