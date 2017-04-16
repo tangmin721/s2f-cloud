@@ -6,6 +6,8 @@ import com.gasq.cloud.consumer.user.entity.User;
 import com.gasq.cloud.consumer.user.feign.UserFeignClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,8 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 public class UserConsumerController {
+
+    private final static Logger log = LoggerFactory.getLogger(UserConsumerController.class);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -61,6 +65,7 @@ public class UserConsumerController {
      */
     @GetMapping("/getFeignUser/{id}")
     public Result getFeignUser(@PathVariable Long id){
+        log.debug("gasq debug getFeignUser id:{}",id);
         return userFeignClient.getUserById(id);
     }
 

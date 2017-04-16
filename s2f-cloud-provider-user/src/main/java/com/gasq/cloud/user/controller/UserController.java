@@ -42,7 +42,7 @@ public class UserController {
 
     @GetMapping("{id}")
     public Result getUser(@PathVariable Long id){
-        logger.info("UserController:get user method print");
+        logger.info("UserController:get user method print id:{}",id);
         return ResultUtil.SUCCESS(userDao.findOne(id));
     }
 

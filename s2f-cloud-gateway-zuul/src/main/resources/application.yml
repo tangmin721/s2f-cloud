@@ -21,7 +21,12 @@ eureka:
 ###定义zuul反向代理规则
 zuul:
   routes:
-    s2f-cloud-consumer-user: /user/**
+    #provider仅用于测试
+    s2f-cloud-provider-user: /provider-user-zuul/**
+    s2f-cloud-consumer-user: /consumer-user-zuul/**
 
+logging:
+  level:
+    com.netflix: debug
 
 
