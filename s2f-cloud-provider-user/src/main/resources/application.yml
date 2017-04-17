@@ -1,9 +1,12 @@
+
+
 server:
   context-path: / #不要加context-path,不然很多坑点需要处理
 spring:
   profiles:
     active: dev
   application:
+    #name: s2f-cloud-provider-user-v1.0
     name: s2f-cloud-provider-user
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -33,4 +36,8 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
     metadata-map:
-      zone: BEIJING      # eureka可以理解的元数据
+      zone: BEIJING   # eureka可以理解的元数据
+
+logging:
+  level:
+    com.gasq: debug

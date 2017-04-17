@@ -36,3 +36,7 @@ eureka:
     metadata-map:
       zone: BEIJING      # eureka可以理解的元数据
 
+
+logging:
+  level:
+    com.gasq: debug
