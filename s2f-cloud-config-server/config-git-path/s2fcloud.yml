@@ -1,5 +1,9 @@
 profile: profile-default-git-path-master1.0
 
+spring:
+  profiles:
+    active: dev
+
 eureka:
   client:
     healthcheck:
