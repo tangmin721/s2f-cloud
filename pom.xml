@@ -9,7 +9,7 @@
 
 	<groupId>com.gasq.cloud</groupId>
 	<artifactId>s2f-cloud</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -30,8 +30,9 @@
 		<module>s2f-cloud-hystrix-dashboard</module>
 		<module>s2f-cloud-hystrix-turbine</module>
         <module>s2f-cloud-gateway-zuul</module>
+		<module>s2f-cloud-config-server</module>
 
-        <!--service impl-->
+		<!--service impl-->
 
 		<!--consumer-->
 

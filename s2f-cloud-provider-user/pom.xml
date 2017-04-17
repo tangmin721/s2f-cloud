@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.gasq.cloud</groupId>
         <artifactId>s2f-cloud-common-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../s2f-cloud-common-parent</relativePath>
     </parent>
 
     <artifactId>s2f-cloud-provider-user</artifactId>
-    <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -49,13 +49,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- spring boot devtools 热部署 依赖包. -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-            <scope>true</scope>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -64,10 +62,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!--fork :  如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
-                    <fork>true</fork>
-                </configuration>
             </plugin>
 
             <!-- 打包跳过测试  mvn test -Dmaven.test.failure.ignore=true mvn install -Dmaven.test.skip=true -->

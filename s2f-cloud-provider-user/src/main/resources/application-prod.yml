@@ -1,6 +1,0 @@
-server:
-  port: 81
-
-girl:
-  cupsize: prod-D
-  age: 18

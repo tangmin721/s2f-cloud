@@ -14,7 +14,8 @@ spring:
           uri: https://github.com/tangmin721/s2f-cloud
           username:
           password:
-          search-paths: s2f-config-server/config-git-path
+          search-paths: s2f-cloud-config-server/config-git-path
+          clone-on-start: true
   application:
     name: s2f-cloud-config-server
 

@@ -9,28 +9,29 @@
 
 	<groupId>com.gasq.cloud</groupId>
 	<artifactId>s2f-cloud-common-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>s2f-cloud-common-parent</name>
 
-	<!-- 配置maven地址 
+	<!--maven私有库-->
 	<distributionManagement>
 		<repository>
 			<id>nexus-releases</id>
 			<name>Nexus Release Repository</name>
-			<url>http://192.168.1.221:8081/nexus/content/repositories/releases/</url>
+			<url>http://cloud1:10080/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>Nexus Snapshot Repository</name>
-			<url>http://192.168.1.221:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://cloud1:10080/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
-	</distributionManagement>-->
+	</distributionManagement>
 
 	<parent>
 	    <groupId>org.springframework.boot</groupId>
 	    <artifactId>spring-boot-starter-parent</artifactId>
 	    <version>1.4.5.RELEASE</version>
+		<relativePath></relativePath>
 	</parent>
 
 	<properties>
@@ -47,6 +48,33 @@
 		<commons-io.version>2.5</commons-io.version>
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 	</properties>
+
+	<profiles>
+		<profile>
+			<!-- 开发环境 -->
+			<id>development</id>
+			<properties>
+				<profiles.active>development</profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<!-- 测试环境 -->
+			<id>test</id>
+			<properties>
+				<profiles.active>test</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<!-- 生产环境 -->
+			<id>production</id>
+			<properties>
+				<profiles.active>production</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencyManagement>
 	    <dependencies>
@@ -105,5 +133,18 @@
 
 		</dependencies>
 	</dependencyManagement>
+
+	<!-- developer -->
+	<developers>
+		<developer>
+			<name>tangmin</name>
+			<id>tangmin</id>
+			<email>191102902@qq.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
 
 </project>
