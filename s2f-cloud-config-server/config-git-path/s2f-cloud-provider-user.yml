@@ -1,9 +1,5 @@
 profile: profile-default-git-path-master1.0
 
-spring:
-  profiles:
-    active: dev
-
 eureka:
   client:
     healthcheck:
@@ -19,3 +15,14 @@ eureka:
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
     metadata-map:
       zone: BEIJING      # eureka可以理解的元数据
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/apple?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: root1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
