@@ -27,4 +27,4 @@ spring:
       ddl-auto: update
     show-sql: true
 
-myprofile: config-localapplication
+myprofile: config-localapplication-refresh
