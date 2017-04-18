@@ -31,6 +31,7 @@
 		<module>s2f-cloud-hystrix-turbine</module>
         <module>s2f-cloud-gateway-zuul</module>
 		<module>s2f-cloud-config-server</module>
+		<module>s2f-cloud-message-center</module>
 
 		<!--service impl-->
 
