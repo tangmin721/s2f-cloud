@@ -19,7 +19,7 @@ public class KafkaProducerTest {
 
         Properties props = new Properties();
         props.put("bootstrap.servers", "kafka01:9092,kafka02:9092,kafka03:9092");
-        props.put("acks", "all");//“所有”设置将导致记录的完整提交阻塞，最慢的，但最持久的设置。
+        props.put("acks", "-1");//如果acks设置数量为0，表示producer不会等待broker的响应，所以，producer无法知道消息是否发送成功，这样有可能会导致数据丢失，但同时，acks值为0会得到最大的系统吞吐量.若acks设置为1，表示producer会在leader partition收到消息时得到broker的一个确认，这样会有更好的可靠性，因为客户端会等待直到broker确认收到消息。若设置为-1，producer会在所有备份的partition收到消息时得到broker的确认，这个设置可以得到最高的可靠性保证。
         props.put("retries", 0);
         props.put("batch.size", 16384);//如果请求失败，生产者也会自动重试，即使设置成０
         props.put("linger.ms", 1);//延时毫秒数
@@ -35,8 +35,8 @@ public class KafkaProducerTest {
             // 3、flush() ;所有缓存记录被立刻发送
             String key = "key:" + i;
             String value = "value:" + i;
-            //这里平均写入3个分区 i%3
-            producer.send(new ProducerRecord<String, String>("my-topic",i%2, key, value),
+            //这里平均写入2个分区
+            producer.send(new ProducerRecord<String, String>("my-topic4",i%2, key, value),
                     new Callback() {
                         public void onCompletion(RecordMetadata metadata, Exception e) {
                             if (e != null) {
